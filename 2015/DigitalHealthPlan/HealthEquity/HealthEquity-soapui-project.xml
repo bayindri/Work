@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="HealthEquity" resourceRoot="" soapui-version="4.6.4" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="MemberBalanceWebServiceSoap" type="wsdl" bindingName="{MemberBalanceWebService}MemberBalanceWebServiceSoap" soapVersion="1_1" anonymous="optional" definition="https://partnertest.healthequity.com/Partner/MemberBalanceWebService.asmx?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache/><con:endpoints><con:endpoint>https://partnertest.healthequity.com:4008/Partner/MemberBalanceWebService.asmx</con:endpoint></con:endpoints><con:operation isOneWay="false" action="MemberBalanceWebService/GetMemberBalance" name="GetMemberBalance" bindingOperationName="GetMemberBalance" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1" wssPasswordType=""><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://partnertest.healthequity.com/Partner/MemberBalanceWebService.asmx</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:mem="MemberBalanceWebService">
+   <soapenv:Header>
+      <mem:MemberBalanceServiceAuthHeader>
+         <!--Optional:-->
+         <mem:Username>BCBSMA_websvcTEST</mem:Username>
+         <!--Optional:-->
+         <mem:Password>w6thxkP12</mem:Password>
+      </mem:MemberBalanceServiceAuthHeader>
+   </soapenv:Header>
+   <soapenv:Body>
+      <mem:GetMemberBalance>
+         <!--Optional:-->
+         <mem:SessionId>?</mem:SessionId>
+         <!--Optional:-->
+         <mem:MemberId>960012591</mem:MemberId>
+         <mem:AccountTypeFlags>1</mem:AccountTypeFlags>
+         <mem:BalanceTypeFlags>1</mem:BalanceTypeFlags>
+      </mem:GetMemberBalance>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:username>BCBSMA_websvcTEST</con:username><con:password>w6thxkP12</con:password><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="MemberBalanceWebService/GetMemberBalance"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="MemberBalanceWebServiceSoap12" type="wsdl" bindingName="{MemberBalanceWebService}MemberBalanceWebServiceSoap12" soapVersion="1_2" anonymous="optional" definition="https://partnertest.healthequity.com/Partner/MemberBalanceWebService.asmx?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="https://partnertest.healthequity.com/Partner/MemberBalanceWebService.asmx?wsdl"><con:part><con:url>https://partnertest.healthequity.com/Partner/MemberBalanceWebService.asmx?wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="MemberBalanceWebService" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="MemberBalanceWebService" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="MemberBalanceWebService">
+      <s:element name="GetMemberBalance">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SessionId" type="s:string"/>
+            <s:element minOccurs="0" maxOccurs="1" name="MemberId" type="s:string"/>
+            <s:element minOccurs="1" maxOccurs="1" name="AccountTypeFlags" type="s:int"/>
+            <s:element minOccurs="1" maxOccurs="1" name="BalanceTypeFlags" type="s:int"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMemberBalanceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMemberBalanceResult" type="tns:MemberBalanceReturn"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="MemberBalanceReturn">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="MemberId" type="s:string"/>
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:ReturnStatus"/>
+          <s:element minOccurs="0" maxOccurs="1" name="SavingsAccountInfos" type="tns:ArrayOfSavingsAccountInfo"/>
+          <s:element minOccurs="0" maxOccurs="1" name="ReimbursementAccountInfos" type="tns:ArrayOfReimbursementAccountInfo"/>
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="ReturnStatus">
+        <s:list>
+          <s:simpleType>
+            <s:restriction base="s:string">
+              <s:enumeration value="Success"/>
+              <s:enumeration value="InvalidCredentials"/>
+              <s:enumeration value="MemberNotFound"/>
+              <s:enumeration value="ServerError"/>
+              <s:enumeration value="OptOut"/>
+            </s:restriction>
+          </s:simpleType>
+        </s:list>
+      </s:simpleType>
+      <s:complexType name="ArrayOfSavingsAccountInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SavingsAccountInfo" nillable="true" type="tns:SavingsAccountInfo"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SavingsAccountInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Type" type="tns:AccountTypeFlag"/>
+          <s:element minOccurs="0" maxOccurs="1" name="AccountId" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string"/>
+          <s:element minOccurs="1" maxOccurs="1" name="AvailableBalance" type="s:decimal"/>
+          <s:element minOccurs="1" maxOccurs="1" name="Investments" type="s:decimal"/>
+          <s:element minOccurs="1" maxOccurs="1" name="Contributions" type="s:decimal"/>
+          <s:element minOccurs="1" maxOccurs="1" name="Distributions" type="s:decimal"/>
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:AccountStatus"/>
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="AccountTypeFlag">
+        <s:list>
+          <s:simpleType>
+            <s:restriction base="s:string">
+              <s:enumeration value="HSA"/>
+              <s:enumeration value="HRA"/>
+              <s:enumeration value="FSA"/>
+              <s:enumeration value="DCRA"/>
+            </s:restriction>
+          </s:simpleType>
+        </s:list>
+      </s:simpleType>
+      <s:simpleType name="AccountStatus">
+        <s:list>
+          <s:simpleType>
+            <s:restriction base="s:string">
+              <s:enumeration value="Open"/>
+              <s:enumeration value="Pending"/>
+              <s:enumeration value="Active"/>
+            </s:restriction>
+          </s:simpleType>
+        </s:list>
+      </s:simpleType>
+      <s:complexType name="ArrayOfReimbursementAccountInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ReimbursementAccountInfo" nillable="true" type="tns:ReimbursementAccountInfo"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ReimbursementAccountInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Type" type="tns:AccountTypeFlag"/>
+          <s:element minOccurs="0" maxOccurs="1" name="AccountId" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string"/>
+          <s:element minOccurs="1" maxOccurs="1" name="AccountBalance" type="s:decimal"/>
+          <s:element minOccurs="1" maxOccurs="1" name="AvailableBalance" type="s:decimal"/>
+          <s:element minOccurs="1" maxOccurs="1" name="ElectionAmount" type="s:decimal"/>
+          <s:element minOccurs="1" maxOccurs="1" name="YtdClaims" type="s:decimal"/>
+          <s:element minOccurs="1" maxOccurs="1" name="YtdClaimsAllowed" type="s:decimal"/>
+          <s:element minOccurs="1" maxOccurs="1" name="YtdClaimsDenied" type="s:decimal"/>
+          <s:element minOccurs="1" maxOccurs="1" name="YtdClaimsPaid" type="s:decimal"/>
+          <s:element minOccurs="1" maxOccurs="1" name="YtdClaimsWaitingPayment" type="s:decimal"/>
+          <s:element minOccurs="1" maxOccurs="1" name="CarryOverbalance" type="s:decimal"/>
+          <s:element minOccurs="1" maxOccurs="1" name="PlanYear" type="s:int"/>
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:AccountStatus"/>
+        </s:sequence>
+      </s:complexType>
+      <s:element name="MemberBalanceServiceAuthHeader" type="tns:MemberBalanceServiceAuthHeader"/>
+      <s:complexType name="MemberBalanceServiceAuthHeader">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string"/>
+        </s:sequence>
+        <s:anyAttribute/>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetMemberBalanceSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMemberBalance"/>
+  </wsdl:message>
+  <wsdl:message name="GetMemberBalanceSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMemberBalanceResponse"/>
+  </wsdl:message>
+  <wsdl:message name="GetMemberBalanceMemberBalanceServiceAuthHeader">
+    <wsdl:part name="MemberBalanceServiceAuthHeader" element="tns:MemberBalanceServiceAuthHeader"/>
+  </wsdl:message>
+  <wsdl:portType name="MemberBalanceWebServiceSoap">
+    <wsdl:operation name="GetMemberBalance">
+      <wsdl:input message="tns:GetMemberBalanceSoapIn"/>
+      <wsdl:output message="tns:GetMemberBalanceSoapOut"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="MemberBalanceWebServiceSoap" type="tns:MemberBalanceWebServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="GetMemberBalance">
+      <soap:operation soapAction="MemberBalanceWebService/GetMemberBalance" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+        <soap:header message="tns:GetMemberBalanceMemberBalanceServiceAuthHeader" part="MemberBalanceServiceAuthHeader" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="MemberBalanceWebServiceSoap12" type="tns:MemberBalanceWebServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="GetMemberBalance">
+      <soap12:operation soapAction="MemberBalanceWebService/GetMemberBalance" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+        <soap12:header message="tns:GetMemberBalanceMemberBalanceServiceAuthHeader" part="MemberBalanceServiceAuthHeader" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="MemberBalanceWebService">
+    <wsdl:port name="MemberBalanceWebServiceSoap" binding="tns:MemberBalanceWebServiceSoap">
+      <soap:address location="https://partnertest.healthequity.com:4008/Partner/MemberBalanceWebService.asmx"/>
+    </wsdl:port>
+    <wsdl:port name="MemberBalanceWebServiceSoap12" binding="tns:MemberBalanceWebServiceSoap12">
+      <soap12:address location="https://partnertest.healthequity.com:4008/Partner/MemberBalanceWebService.asmx"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>https://partnertest.healthequity.com:4008/Partner/MemberBalanceWebService.asmx</con:endpoint></con:endpoints><con:operation isOneWay="false" action="MemberBalanceWebService/GetMemberBalance" name="GetMemberBalance" bindingOperationName="GetMemberBalance" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://partnertest.healthequity.com:4008/Partner/MemberBalanceWebService.asmx</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:mem="MemberBalanceWebService">
+   <soap:Header>
+      <mem:MemberBalanceServiceAuthHeader>
+         <!--Optional:-->
+         <mem:Username>?</mem:Username>
+         <!--Optional:-->
+         <mem:Password>?</mem:Password>
+      </mem:MemberBalanceServiceAuthHeader>
+   </soap:Header>
+   <soap:Body>
+      <mem:GetMemberBalance>
+         <!--Optional:-->
+         <mem:SessionId>?</mem:SessionId>
+         <!--Optional:-->
+         <mem:MemberId>?</mem:MemberId>
+         <mem:AccountTypeFlags>?</mem:AccountTypeFlags>
+         <mem:BalanceTypeFlags>?</mem:BalanceTypeFlags>
+      </mem:GetMemberBalance>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="MemberBalanceWebService/MemberBalanceWebServiceSoap/GetMemberBalanceRequest"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/></con:soapui-project>
